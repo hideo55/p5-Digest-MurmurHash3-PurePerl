@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use 5.008008;
-use Module::Build::Pluggable qw(CPANfile GithubMeta);
+use Module::Build::Pluggable qw(CPANfile GithubMeta ReadmeMarkdownFromPod);
 
 my $builder = Module::Build::Pluggable->new(
     name                => 'Digest-MurmurHash3-PurePerl',
@@ -11,7 +11,6 @@ my $builder = Module::Build::Pluggable->new(
     add_to_cleanup      => [ 'Digest-MurmurHash3-PurePerl-*' ],
     no_index       => { 'directory' => [ 't', 'xt', 'inc', 'eg' ] },
     test_files => ( -d '.git' || $ENV{RELEASE_TESTING} ) ? [qw(t/ xt/)] : ['t/'],
-    create_readme  => 1,
     create_license => 1,
     meta_add => {
         keywords  => [qw//],

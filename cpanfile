@@ -3,8 +3,9 @@ requires 'perl' => '5.008008';
 
 on 'configure' => sub {
     requires 'Module::Build::Pluggable';
-    requires 'Module::Build::Pluggable::GithubMeta';
     requires 'Module::Build::Pluggable::CPANfile';
+    requires 'Module::Build::Pluggable::GithubMeta';
+    requires 'Module::Build::Pluggable::ReadmeMarkdownFromPod';
 };
 
 on 'build' => sub {
