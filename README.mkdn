@@ -10,22 +10,25 @@ Digest::MurmurHash3::PurePerl - Pure perl implementation of MurmurHash3
     
 
     my $hash = murmur3_32($data);
-    my $hases = murmur3_128($data)
+    my $hash = murmur3_128($data);
     
 
 
 
 # DESCRIPTION
 
+Digest::MurmurHash3::PurePerl is 
+
 # METHODS
 
 ## $h = murmur32($data \[, $seed\])
 
-Calculates 32 bit hash value.
+Calculates 32-bit hash value.
 
-## ($v1, $v2, $v3, $v4) = murmur128($data \[, $seed\])
+## ($v1, $2, $v3, $4) = murmur128($data \[, $seed\])
 
-Calculates 32 bit hash value.
+Calculates 128-bit hash value.
+It returns list of 32-bit hash values.
 
 # SEE ALSO
 

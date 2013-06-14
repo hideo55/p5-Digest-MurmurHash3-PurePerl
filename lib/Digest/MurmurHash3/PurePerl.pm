@@ -7,7 +7,6 @@ use base 'Exporter';
 our $VERSION = '0.01';
 
 our @EXPORT    = qw(murmur32 murmur128);
-our @EXPORT_OK = @EXPORT;
 
 sub murmur32 {
     my ( $key, $seed ) = @_;
@@ -23,7 +22,6 @@ sub murmur32 {
     my @tail       = splice( @vals, scalar(@vals) - $tail_len, $tail_len );
     my $h1         = $seed;
 
-    use integer;
     for my $block (@vals) {
         my $k1 = $block;
         $h1 ^= _mmix32($k1);
@@ -61,13 +59,15 @@ sub murmur128 {
     my $num_blocks = int( $len / 16 );
     my @vals       = unpack 'V*C*', $key;
     my ( $k1, $k2, $k3, $k4 );
+    
     use integer;
+
     for ( my $i = 0; $i < $num_blocks; $i++ ) {
         $k1 = $vals[ $i * 4 + 0 ];
         $k2 = $vals[ $i * 4 + 1 ];
         $k3 = $vals[ $i * 4 + 2 ];
         $k4 = $vals[ $i * 4 + 3 ];
-
+        
         $k1 = _to_uint32( $k1 * $c1 );
         $k1 = _rotl32( $k1, 15 );
         $k1 = _to_uint32( $k1 * $c2 );
@@ -118,7 +118,6 @@ sub murmur128 {
     $k4 = 0;
 
     {
-        use integer;
 
         my $len_lo4 = $len & 0x0F;
         if ( $len_lo4 == 15 ) { $k4 ^= $tail[14] << 16; }
@@ -186,7 +185,7 @@ sub murmur128 {
         $h3 = _to_uint32( $h3 + $h1 );
         $h4 = _to_uint32( $h4 + $h1 );
     }
-    return ($h1, $h2, $h3, $h4 );
+    return [$h1, $h2, $h3, $h4 ];
 }
 
 sub _rotl32 {
@@ -196,7 +195,6 @@ sub _rotl32 {
 
 sub _fmix32 {
     my $h = shift;
-    use integer;
     $h = ( $h ^ ( $h >> 16 ) );
     $h = _to_uint32( $h * 0x85ebca6b );
     $h = ( $h ^ ( $h >> 13 ) );
@@ -224,7 +222,6 @@ sub _rho {
 }
 
 sub _to_uint32 {
-    no integer;
     return $_[0] & 0xFFFFFFFF;
 }
 
@@ -246,20 +243,23 @@ Digest::MurmurHash3::PurePerl - Pure perl implementation of MurmurHash3
   use Digest::MurmurHash3::PurePerl;
   
   my $hash = murmur3_32($data);
-  my $hases = murmur3_128($data)
+  my $hash = murmur3_128($data);
   
 
 =head1 DESCRIPTION
+
+Digest::MurmurHash3::PurePerl is 
 
 =head1 METHODS
 
 =head2 $h = murmur32($data [, $seed])
 
-Calculates 32 bit hash value.
+Calculates 32-bit hash value.
 
-=head2 ($v1, $v2, $v3, $v4) = murmur128($data [, $seed])
+=head2 ($v1, $2, $v3, $4) = murmur128($data [, $seed])
 
-Calculates 32 bit hash value.
+Calculates 128-bit hash value.
+It returns list of 32-bit hash values.
 
 =head1 SEE ALSO
 
