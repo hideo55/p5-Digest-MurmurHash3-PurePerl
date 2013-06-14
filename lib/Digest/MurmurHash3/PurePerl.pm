@@ -241,8 +241,14 @@ Digest::MurmurHash3::PurePerl - Pure perl implementation of MurmurHash3
   use strict;
   use warnings;
   use Digest::MurmurHash3::PurePerl;
-  my $hash = murmur3_32($data);
-  my $hash = murmur3_128($data);
+
+  # Calculate hash value without seed
+  my $hash = murmur32($data);
+  my @hashes = murmur128($data);
+  
+  # Calculate hash value with seed
+  $hash = murmur32($data, $seed);
+  @hashes = murmur128($data, $seed);
   
 
 =head1 DESCRIPTION
