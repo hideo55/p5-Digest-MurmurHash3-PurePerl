@@ -6,7 +6,7 @@ use base 'Exporter';
 
 our $VERSION = '0.01';
 
-our @EXPORT    = qw(murmur32 murmur128);
+our @EXPORT = qw(murmur32 murmur128);
 
 sub murmur32 {
     my ( $key, $seed ) = @_;
@@ -59,7 +59,7 @@ sub murmur128 {
     my $num_blocks = int( $len / 16 );
     my @vals       = unpack 'V*C*', $key;
     my ( $k1, $k2, $k3, $k4 );
-    
+
     use integer;
 
     for ( my $i = 0; $i < $num_blocks; $i++ ) {
@@ -67,7 +67,7 @@ sub murmur128 {
         $k2 = $vals[ $i * 4 + 1 ];
         $k3 = $vals[ $i * 4 + 2 ];
         $k4 = $vals[ $i * 4 + 3 ];
-        
+
         $k1 = _to_uint32( $k1 * $c1 );
         $k1 = _rotl32( $k1, 15 );
         $k1 = _to_uint32( $k1 * $c2 );
@@ -185,7 +185,7 @@ sub murmur128 {
         $h3 = _to_uint32( $h3 + $h1 );
         $h4 = _to_uint32( $h4 + $h1 );
     }
-    return [$h1, $h2, $h3, $h4 ];
+    return ( $h1, $h2, $h3, $h4 );
 }
 
 sub _rotl32 {
@@ -241,14 +241,13 @@ Digest::MurmurHash3::PurePerl - Pure perl implementation of MurmurHash3
   use strict;
   use warnings;
   use Digest::MurmurHash3::PurePerl;
-  
   my $hash = murmur3_32($data);
   my $hash = murmur3_128($data);
   
 
 =head1 DESCRIPTION
 
-Digest::MurmurHash3::PurePerl is 
+Digest::MurmurHash3::PurePerl is pure perl implementation of MurmurHash3.
 
 =head1 METHODS
 
@@ -256,10 +255,11 @@ Digest::MurmurHash3::PurePerl is
 
 Calculates 32-bit hash value.
 
-=head2 ($v1, $2, $v3, $4) = murmur128($data [, $seed])
+=head2 ($v1,$v2,$v3,v4) = murmur128($data [, $seed])
 
 Calculates 128-bit hash value.
-It returns list of 32-bit hash values.
+
+It returns four element list of 32-bit integers.
 
 =head1 SEE ALSO
 
