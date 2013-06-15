@@ -16,4 +16,4 @@ META.json
 _build
 Build
 *.bak
-
+Digest-MurmurHash3-PurePerl-*

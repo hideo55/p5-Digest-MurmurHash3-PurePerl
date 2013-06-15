@@ -27,8 +27,8 @@ subtest '32bit - long string with seed' => sub {
 };
 
 subtest '128bit - short string without seed' => sub {
-    my @128 = murmur128($short);
-    is_deeply \@128, [ 0x2360ae46, 0x5e6336c6, 0xad45b3f4, 0xad45b3f4 ];
+    my @m128 = murmur128($short);
+    is_deeply \@m128, [ 0x2360ae46, 0x5e6336c6, 0xad45b3f4, 0xad45b3f4 ];
 };
 
 subtest '128bit - short string with seed' => sub {
@@ -37,13 +37,13 @@ subtest '128bit - short string with seed' => sub {
 };
 
 subtest '128bit - long string without seed' => sub {
-    my @128 = murmur128($long);
-    is_deeply \@128, [ 0xd31673ff, 0x4ebb82ca, 0xcdc3e38b, 0x6e91e09d ];
+    my @m128 = murmur128($long);
+    is_deeply \@m128, [ 0xd31673ff, 0x4ebb82ca, 0xcdc3e38b, 0x6e91e09d ];
 };
 
 subtest '128bit - long string with seed' => sub {
-    my @128 = murmur128( $long, 42 );
-    is_deeply \@128, [ 0x4c5bb540, 0x2fb5c4f3, 0xc29217ac, 0xc6cfe3af ];
+    my @m128 = murmur128( $long, 42 );
+    is_deeply \@m128, [ 0x4c5bb540, 0x2fb5c4f3, 0xc29217ac, 0xc6cfe3af ];
 };
 
 done_testing;
