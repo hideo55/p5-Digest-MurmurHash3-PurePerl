@@ -222,6 +222,7 @@ sub _rho {
 }
 
 sub _to_uint32 {
+    no integer;
     return $_[0] & 0xFFFFFFFF;
 }
 
