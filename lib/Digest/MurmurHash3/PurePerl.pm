@@ -4,7 +4,7 @@ use warnings;
 use 5.008008;
 use base 'Exporter';
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 our @EXPORT = qw(murmur32 murmur128);
 
