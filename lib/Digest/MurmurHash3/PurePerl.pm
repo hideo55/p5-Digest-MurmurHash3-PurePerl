@@ -26,6 +26,7 @@ sub murmur32 {
         my $k1 = $block;
         $h1 ^= _mmix32($k1);
         $h1 = _rotl32( $h1, 13 );
+        use integer;
         $h1 = _to_uint32( $h1 * 5 + 0xe6546b64 );
     }
 
@@ -196,9 +197,15 @@ sub _rotl32 {
 sub _fmix32 {
     my $h = shift;
     $h = ( $h ^ ( $h >> 16 ) );
-    $h = _to_uint32( $h * 0x85ebca6b );
+    {
+        use integer;
+        $h = _to_uint32( $h * 0x85ebca6b );
+    }
     $h = ( $h ^ ( $h >> 13 ) );
-    $h = _to_uint32( $h * 0xc2b2ae35 );
+    {
+        use integer;
+        $h = _to_uint32( $h * 0xc2b2ae35 );
+    }
     $h = ( $h ^ ( $h >> 16 ) );
     return $h;
 }
