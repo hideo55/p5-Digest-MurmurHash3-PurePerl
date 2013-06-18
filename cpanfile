@@ -9,14 +9,11 @@ on 'configure' => sub {
 };
 
 on 'build' => sub {
-};
-
-on 'test' => sub {
     requires 'Test::More'     => '0.98';
 };
 
 on 'develop' => sub {
-    requires 'Test::Spelling';
+    requires 'Test::Spellunker';
     requires 'Test::Perl::Critic';
     requires 'Test::Pod';
     requires 'Test::Pod::Coverage';

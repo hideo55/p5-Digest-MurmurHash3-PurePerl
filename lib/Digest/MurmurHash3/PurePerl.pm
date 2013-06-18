@@ -30,7 +30,7 @@ sub murmur32 {
         $h1 = _to_uint32( $h1 * 5 + 0xe6546b64 );
     }
 
-    if ( @tail > 0 ) {
+    if ( $tail_len > 0 ) {
         my $k1 = 0;
         for my $c1 ( reverse @tail ) {
             $k1 = ( ( $k1 << 8 ) | $c1 );
@@ -119,16 +119,16 @@ sub murmur128 {
     $k4 = 0;
 
     {
-
         my $len_lo4 = $len & 0x0F;
         if ( $len_lo4 == 15 ) { $k4 ^= $tail[14] << 16; }
         if ( $len_lo4 >= 14 ) { $k4 ^= $tail[13] << 8; }
         if ( $len_lo4 >= 13 ) {
+            
             $k4 ^= $tail[12] << 0;
             $k4 = _to_uint32( $k4 * $c4 );
             $k4 = _rotl32( $k4, 18 );
             $k4 = _to_uint32( $k4 * $c1 );
-            $k4 ^= $k4;
+            $h4 ^= $k4;
         }
         if ( $len_lo4 >= 12 ) { $k3 ^= $tail[11] << 24; }
         if ( $len_lo4 >= 11 ) { $k3 ^= $tail[10] << 16; }
@@ -216,16 +216,6 @@ sub _mmix32 {
     $k1 = _to_uint32( $k1 * 0xcc9e2d51 );
     $k1 = _rotl32( $k1, 15 );
     return _to_uint32( $k1 * 0x1b873593 );
-}
-
-sub _rho {
-    my ( $x, $b ) = @_;
-    my $v = 1;
-    while ( $v <= $b && !( $x & 0x80000000 ) ) {
-        $v++;
-        $x <<= 1;
-    }
-    return $v;
 }
 
 sub _to_uint32 {
