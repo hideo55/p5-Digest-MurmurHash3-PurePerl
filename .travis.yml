@@ -1,7 +1,7 @@
 language: perl
 before_install:
   - perlbrew -f install-cpanm
-  - cpanm -n git://github.com/kan/coveralls-perl.git
+  - cpanm -n Devel::Cover::Report::Coveralls
 script: perl Build.PL && ./Build && ./Build testcover
 after_success:
   - cover -report coveralls
