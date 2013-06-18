@@ -1,9 +1,7 @@
 language: perl
 before_install:
   - perlbrew -f install-cpanm
-  - 'cpanm --notest Module::CPANfile'
-  - "perl -e 'use Module::CPANfile;print $_,$/ for keys %{Module::CPANfile->load(q!cpanfile!)->prereq_specs->{configure}->{requires}}' | cpanm --notest"
-  - 'cpanm -n git://github.com/kan/coveralls-perl.git'
+  - cpanm -n git://github.com/kan/coveralls-perl.git
 script: perl Build.PL && ./Build && ./Build testcover
 after_success:
   - cover -report coveralls
