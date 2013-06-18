@@ -1,5 +1,11 @@
 Revision history for Digest::MurmurHash3::PurePerl
 
+{{$NEXT}}
+
+0.03 2013-06-18T15:37:29Z
+        - Improved test
+        - Change authoring tool to Minilla
+
 0.02    Sun Jun 16 23:15:00 2013
         - Fixed bit operation bug in 32-bit environment
 
