@@ -1,3 +1,4 @@
+use utf8;
 use Test::More;
 eval q{ use Test::Spellunker };
 plan skip_all => "Test::Spellunker is not installed." if $@;
@@ -7,4 +8,7 @@ all_pod_files_spelling_ok('lib');
 __DATA__
 Hideaki Ohno
 hide.o.j55 {at} gmail.com
-Digest::MurmurHash3::PurePerl
+HyperLogLog
+Éric
+Frédéric
+pp
