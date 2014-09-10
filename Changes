@@ -2,6 +2,9 @@ Revision history for Digest::MurmurHash3::PurePerl
 
 {{$NEXT}}
 
+1.01 2014-09-10T12:16:05Z
+    - Fixed violation of CPAN Meta Spec
+
 1.00 2013-06-18T16:56:42Z
     - Bump up version
 

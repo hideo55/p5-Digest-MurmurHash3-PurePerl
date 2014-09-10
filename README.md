@@ -12,13 +12,10 @@ Digest::MurmurHash3::PurePerl - Pure perl implementation of MurmurHash3
     my $hash = murmur32($data);
     my @hashes = murmur128($data);
     
-
     # Calculate hash value with seed
     $hash = murmur32($data, $seed);
     @hashes = murmur128($data, $seed);
     
-
-
 
 # DESCRIPTION
 
@@ -38,7 +35,7 @@ It returns four element list of 32-bit integers.
 
 # SEE ALSO
 
-[Digest::MurmurHash3](http://search.cpan.org/perldoc?Digest::MurmurHash3)
+[Digest::MurmurHash3](https://metacpan.org/pod/Digest::MurmurHash3)
 
 # AUTHOR
 
