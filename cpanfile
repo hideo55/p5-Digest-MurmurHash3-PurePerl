@@ -1,5 +1,6 @@
 #!perl
 requires 'perl' => '5.008008';
+requires 'Exporter';
 
 on 'configure' => sub {
     requires 'Module::Build' => '0.38';
